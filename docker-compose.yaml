@@ -1,0 +1,7 @@
+---
+services:
+  idp:
+    build: .
+    container_name: idp
+
+  # freeipa:

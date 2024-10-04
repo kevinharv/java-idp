@@ -1,0 +1,10 @@
+.gradle
+.vscode
+bin
+build
+conf
+.gitignore
+.gitattributes
+docker-compose.yaml
+Dockerfile
+gradlew.bat
