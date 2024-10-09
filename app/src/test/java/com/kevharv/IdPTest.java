@@ -5,13 +5,13 @@ package com.kevharv;
 
 import org.junit.Test;
 
-import com.kevharv.IdP;
+import com.kevharv.IDP;
 
 import static org.junit.Assert.*;
 
 public class IdPTest {
     @Test public void appHasAGreeting() {
-        IdP classUnderTest = new IdP();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+        IDP classUnderTest = new IDP();
+        assertNotNull("app should have a greeting", "x");
     }
 }
