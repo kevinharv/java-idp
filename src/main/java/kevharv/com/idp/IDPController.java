@@ -2,22 +2,29 @@ package kevharv.com.idp;
 
 import java.util.Map;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IDPController {
     
-    @GetMapping("/sso/test")
-    public ModelAndView displayTest(Map<String, String> model) {
-        String foo = "fdkak;jff";
+    @GetMapping("/sso/login")
+    public ModelAndView getLoginView(Map<String, String> model) {
+        
+        model.put("title", "Example Single Sign-On");
 
-        model.put("templated", foo);
-
-        return new ModelAndView("index", model);
+        return new ModelAndView("login", model);
     }
 
-    // @PostMapping("/")
 
+    @PostMapping(path = "/sso/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ModelAndView submitLoginCredentials(@RequestParam MultiValueMap<String, String> credentials) {
+        
+        return new ModelAndView("login");
+    }
 }

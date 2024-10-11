@@ -24,7 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server"
-	runtimeOnly 'io.micrometer:micrometer-registry-otlp'
+	// runtimeOnly 'io.micrometer:micrometer-registry-otlp'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.unboundid:unboundid-ldapsdk'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
