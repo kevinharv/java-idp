@@ -1,30 +1,20 @@
 package kevharv.com.idp;
 
-import java.util.logging.*;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class IdpApplication {
 
-	// Logger logger = LoggerFactory.getLogger(IdpApplication.class);
-	private static final Logger logger = LoggerFactory.getLogger(IdpApplication.class);
-	
 	public static void main(String[] args) {
-		logger.info("TEST");		
 		SpringApplication.run(IdpApplication.class, args);
 
-		// logger.info("Starting IDP");
 
         // Connect to LDAP
         // Bind to LDAP
         // Search LDAP
         // Log results
 
-        // logger.info("Shutting down IDP");
 	}
 
 	/*
