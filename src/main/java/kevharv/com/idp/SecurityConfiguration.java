@@ -15,12 +15,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     @Bean
-    public SecurityFilterChain disablePublicRouteAuth(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/sso/*", "/assets/**", "/login").permitAll().anyRequest().authenticated())
-                .formLogin(form -> form.permitAll().defaultSuccessUrl("/sso/login").failureUrl("/"))
-                .logout(logout -> logout.permitAll());
-        return httpSecurity.build();
+    public SecurityFilterChain disablePublicRouteAuth(HttpSecurity http) throws Exception {
+        // http
+        //         .authorizeHttpRequests(auth -> auth.requestMatchers("/sso/*", "/assets/**", "/login").permitAll()
+        //                 .anyRequest().authenticated())
+        //         .formLogin(form -> form.permitAll().defaultSuccessUrl("/sso/login").failureUrl("/"))
+        //         .logout(logout -> logout.permitAll());
+                
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
+        return http.build();
+    
     }
 
     @Bean

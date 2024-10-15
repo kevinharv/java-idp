@@ -10,17 +10,19 @@
 <body>
     <div id="login-wrapper">
         <div id="login-box">
-            <form>
+            <form action="/sso/login" method="post">
                 <!-- LOGIN FORM -->
                 <label>Username</label>
-                <input />
+                <input name="username" />
 
                 <label>Password</label>
-                <input />
+                <input name="password" />
 
                 <button type="submit">Login</button>
             </form>
             <!-- Login footer/disclaimer -->
+             <h3>Username: {{ username }}</h3>
+             <h3>Passowrd: {{ password }}</h3>
         </div>
     </div>
     <!-- Site TOS Footer -->
