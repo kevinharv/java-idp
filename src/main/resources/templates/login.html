@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>Enterprise SSO</title>
     <link rel="icon" type="image/png" href="/assets/logo.png">
     <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
     <div id="login-wrapper">
         <div id="login-box">
+            <!-- Logo -->
             <form action="/sso/login" method="post">
                 <!-- LOGIN FORM -->
-                <label>Username</label>
-                <input name="username" />
+                <label for="username-field">Username</label>
+                <input id="username-field" name="username" />
 
-                <label>Password</label>
-                <input name="password" />
+                <label for="password-field">Password</label>
+                <input id="password-field" name="password" />
 
                 <button type="submit">Login</button>
             </form>
             <!-- Login footer/disclaimer -->
-             <h3>Username: {{ username }}</h3>
-             <h3>Passowrd: {{ password }}</h3>
         </div>
     </div>
     <!-- Site TOS Footer -->

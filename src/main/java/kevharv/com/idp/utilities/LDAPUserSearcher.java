@@ -1,4 +1,4 @@
-package kevharv.com.idp;
+package kevharv.com.idp.utilities;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class LDAPUserSearcher implements CommandLineRunner {
     private final LdapTemplate LDAPTemplate;
 
     public LDAPUserSearcher(LdapTemplate ldapTemplate) {
+        ldapTemplate.setIgnorePartialResultException(true);
         this.LDAPTemplate = ldapTemplate;
     }
 
