@@ -28,6 +28,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.unboundid:unboundid-ldapsdk'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-data-ldap'
+    testImplementation 'org.springframework.ldap:spring-ldap-test'
 }
 
 tasks.named('test') {
