@@ -18,7 +18,7 @@ class IdpApplicationTests {
     @Test
     void testLdapUserExists() {
         boolean userExists = ldapTemplate.authenticate(
-                "ou=people,dc=springframework,dc=org",  // Use the full DN
+                "ou=people",  // Use the full DN
                 "(uid=john.doe)", "secret");
 
         assertThat(userExists).isTrue();
