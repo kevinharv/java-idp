@@ -23,7 +23,6 @@ public class LDAPUserSearcher implements CommandLineRunner {
     private final LdapTemplate LDAPTemplate;
 
     public LDAPUserSearcher(LdapTemplate ldapTemplate) {
-        // ldapTemplate.setIgnorePartialResultException(true);
         this.LDAPTemplate = ldapTemplate;
     }
 

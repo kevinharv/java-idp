@@ -8,13 +8,6 @@ public class IdpApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(IdpApplication.class, args);
-
-
-        // Connect to LDAP
-        // Bind to LDAP
-        // Search LDAP
-        // Log results
-
 	}
 
 	/*
