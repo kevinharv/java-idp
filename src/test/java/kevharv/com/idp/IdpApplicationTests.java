@@ -19,7 +19,7 @@ class IdpApplicationTests {
     void testLdapUserExists() {
         boolean userExists = ldapTemplate.authenticate(
                 "ou=people",  // Use the full DN
-                "(uid=john.doe)", "secret");
+                "(cn=john.doe)", "secret");
 
         assertThat(userExists).isTrue();
     }

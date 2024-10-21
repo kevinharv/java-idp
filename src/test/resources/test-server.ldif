@@ -8,10 +8,10 @@ objectClass: top
 objectClass: organizationalUnit
 ou: people
 
-dn: uid=john.doe,ou=people,dc=springframework,dc=org
+dn: cn=john.doe,ou=people,dc=springframework,dc=org
 objectClass: inetOrgPerson
-cn: John Doe
+objectClass: person
+cn: john.doe
 sn: Doe
-uid: john.doe
 userPassword: secret
 mail: john.doe@springframework.org
