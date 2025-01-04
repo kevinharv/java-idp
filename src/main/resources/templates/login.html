@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise SSO</title>
     <link rel="icon" type="image/png" href="/assets/logo.png">
     <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div id="login-wrapper">
-        <div id="login-box">
-            <!-- Logo -->
-            <form action="/sso/login" method="post">
-                <!-- LOGIN FORM -->
-                <label for="username-field">Username</label>
-                <input id="username-field" name="username" />
+    <div id="wrapper" class="flex-col">
+        <div class="flex-row">
+            <div id="auth-container">
+                <!-- Login Header(s) -->
+                <h3 class="bg-accent banner">[INSTITUTION] Login Service</h3>
+                
+                <div class="flex-row" style="justify-content: space-evenly; margin: 1.5rem;">
+                    <!-- Left/Top Container -->
+                    <div class="flex-col">
+                        <h3>Logo/Banner (Site Specific)</h3>
+                    </div>
+    
+                    <!-- Right/Bottom Container -->
+                    <div class="flex-col">
+                        <!-- Login Form -->
+                        <form action="/sso/login" method="post" class="flex-col">
+                            <label for="username-field">Enter User</label>
+                            <input id="username-field" name="username" />
+        
+                            <label for="password-field">Password</label>
+                            <input id="password-field" name="password" />
+        
+                            <button type="submit">Login</button>
+                        </form>
+                    </div>
+                </div>
 
-                <label for="password-field">Password</label>
-                <input id="password-field" name="password" />
-
-                <button type="submit">Login</button>
-            </form>
-            <!-- Login footer/disclaimer -->
+                <!-- Login Footer -->
+                <h3 class="bg-accent banner">Footer (Disclaimers & TOS)</h3>
+            </div>
         </div>
     </div>
-    <!-- Site TOS Footer -->
 </body>
+
 </html>

@@ -1,3 +1,65 @@
-h1 {
-    font-size: 14rem;
+:root {
+  --bg-color: #eeeeee;
+  --accent-color: #00adb5;
+  --secondary-color: #393E46;
+  --text-color: #222831;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #eeeeee;
+    --accent-color: #00adb5;
+    --secondary-color: #393e46;
+    --bg-color: #222831;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  color: var(--text-color);
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#wrapper {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#auth-container {
+  background-color: var(--secondary-color);
+  border-radius: 0.25rem;
+}
+
+.banner {
+    width: 100%;
+    padding: 0.75rem 0 0.75rem 0;
+    margin: 0;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+.bg-accent {
+    background-color: var(--accent-color);
 }
