@@ -26,6 +26,8 @@ import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.server.authorization.InMemoryOAuth2AuthorizationConsentService;
+import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
@@ -97,14 +99,16 @@ public class SecurityConfig {
 		RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId("oidc-client")
 				.clientSecret("{noop}secret")
-				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+				// .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-				.redirectUri("http://localhost:8080/login/oauth2/code/oidc-client")
-				.postLogoutRedirectUri("http://localhost:8080/")
+				// .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+				// .redirectUri("http://localhost:8080/login/oauth2/code/oidc-client")
+				// .redirectUri("http://localhost:8080/callback")
+				.redirectUri("https://oauth.pstmn.io/v1/browser-callback")
+				.postLogoutRedirectUri("http://localhost:8443/")
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
-				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
+				// .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 				.build();
 
 		return new InMemoryRegisteredClientRepository(oidcClient);
@@ -143,6 +147,11 @@ public class SecurityConfig {
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
 		return AuthorizationServerSettings.builder().build();
+	}
+
+	@Bean
+	public OAuth2AuthorizationConsentService authorizationConsentService() {
+		return new InMemoryOAuth2AuthorizationConsentService();
 	}
 
 }
