@@ -101,15 +101,11 @@ public class SecurityConfig {
 				.clientSecret("{noop}secret")
 				// .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-				// .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-				// .redirectUri("http://localhost:8080/login/oauth2/code/oidc-client")
-				// .redirectUri("http://localhost:8080/callback")
-				.redirectUri("https://oauth.pstmn.io/v1/browser-callback")
+				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.redirectUri("https://openidconnect.net/callback")
 				.postLogoutRedirectUri("http://localhost:8080/")
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
-				// .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 				.build();
 
 		return new InMemoryRegisteredClientRepository(oidcClient);
