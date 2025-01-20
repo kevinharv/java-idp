@@ -20,10 +20,10 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-ldap'
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.springframework.boot:spring-boot-starter-security"
 	implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server"
+	implementation "org.thymeleaf:thymeleaf-spring6"
 	// runtimeOnly 'io.micrometer:micrometer-registry-otlp'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'com.unboundid:unboundid-ldapsdk'

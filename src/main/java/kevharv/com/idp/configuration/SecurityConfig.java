@@ -78,7 +78,11 @@ public class SecurityConfig {
 						.anyRequest().authenticated())
 				// Form login handles the redirect to the login page from the
 				// authorization server filter chain
-				.formLogin(Customizer.withDefaults());
+				// .formLogin(Customizer.withDefaults());
+				.formLogin(form -> form
+					.loginPage("/sso/login")
+					.permitAll()
+				);
 
 		return http.build();
 	}
@@ -103,7 +107,7 @@ public class SecurityConfig {
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.redirectUri("https://openidconnect.net/callback")
-				.postLogoutRedirectUri("http://localhost:8080/")
+				.postLogoutRedirectUri("/")
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
 				.build();
@@ -151,15 +155,15 @@ public class SecurityConfig {
 		return new InMemoryOAuth2AuthorizationConsentService();
 	}
 
-	@Bean
-	public CorsConfigurationSource corsConfigSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedOrigin("*");
-		configuration.addAllowedMethod("*");
-		configuration.setAllowCredentials(true);
-		configuration.addAllowedHeader("*");
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+	// @Bean
+	// public CorsConfigurationSource corsConfigSource() {
+	// 	CorsConfiguration configuration = new CorsConfiguration();
+	// 	configuration.addAllowedOrigin("*");
+	// 	configuration.addAllowedMethod("*");
+	// 	configuration.setAllowCredentials(true);
+	// 	configuration.addAllowedHeader("*");
+	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	// 	source.registerCorsConfiguration("/**", configuration);
+	// 	return source;
+	// }
 }
