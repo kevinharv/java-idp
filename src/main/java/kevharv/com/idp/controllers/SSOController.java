@@ -3,6 +3,9 @@ package kevharv.com.idp.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.ldap.userdetails.LdapUserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,29 +26,18 @@ public class SSOController {
     
     @Autowired
     LdapTemplate ldapTemplate;
-    
+
     @GetMapping("/sso/login")
-    public ModelAndView getLoginView() {
-
-        return new ModelAndView("login");
+    public String login() {
+        return "authenticationPage";
     }
 
-
-    @PostMapping(path = "/sso/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public RedirectView submitLoginCredentials(@RequestParam MultiValueMap<String, String> credentials) {
-       
-        ssoLogger.info("Submitted Credentials: " + credentials.getFirst("username") + " " + credentials.getFirst("password")); // Don't do this
-
-        String username = credentials.getFirst("username");
-        String password = credentials.getFirst("password");
-
-        boolean authenticated = LDAPAuthenticator.authenticateUser(ldapTemplate, username, password);
-        ssoLogger.info("User was authenticated: " + authenticated);
-
-        return new RedirectView("/sso/login");  // Testing redirect to hide credentials in browser
+    @GetMapping("/sso/info")
+    public String info() {
+        Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof LdapUserDetails) {
+            ssoLogger.info(((LdapUserDetails) authentication.getPrincipal()).getUsername());
+        }
+        return null;
     }
-
-
-    // To-Do - Error page with templating for error message
-    // To-Do - ModelAndView for invalid credentials (set template variables depending)
 }

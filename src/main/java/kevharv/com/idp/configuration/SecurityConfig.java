@@ -78,11 +78,11 @@ public class SecurityConfig {
 						.anyRequest().authenticated())
 				// Form login handles the redirect to the login page from the
 				// authorization server filter chain
-				.formLogin(Customizer.withDefaults());
-				// .formLogin(form -> form
-				// 	.loginPage("/sso/login")
-				// 	.permitAll()
-				// );
+				// .formLogin(Customizer.withDefaults());
+				.formLogin(form -> form
+					.loginPage("/sso/login")
+					.permitAll()
+				);
 
 		return http.build();
 	}
@@ -98,7 +98,6 @@ public class SecurityConfig {
 		RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId("oidc-client")
 				.clientSecret("{noop}secret")
-				// .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.redirectUri("https://openidconnect.net/callback")
