@@ -2,10 +2,6 @@ FROM gradle:8.10.2-jdk21-alpine AS builder
 
 WORKDIR /app
 
-# COPY gradle gradle
-# COPY gradlew .
-# COPY settings.gradle .
-# COPY build.gradle .
 COPY . .
 
 RUN ./gradlew --no-daemon clean build

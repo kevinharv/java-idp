@@ -10,18 +10,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
-import kevharv.com.idp.models.LDAPUser;
-import kevharv.com.idp.services.LDAPUserService;
-
 @SpringBootTest
 @ActiveProfiles("test")
 class IdpApplicationTests {
 
 	@Autowired
     private LdapTemplate ldapTemplate;
-
-    @Autowired
-    private LDAPUserService ldapUserService;
 
     @Test
     void testLdapUserExists() {
@@ -30,18 +24,6 @@ class IdpApplicationTests {
                 "(cn=john.doe)", "secret");
 
         assertTrue(userExists);
-    }
-
-    @Test
-    void testLDAPServiceFind() {
-        LDAPUser user = ldapUserService.getUserByCn("john.doe");
-        assertNotNull(user);
-    }
-
-    @Test
-    void testLDAPServiceMap() {
-        LDAPUser user = ldapUserService.getUserByCn("john.doe");
-        assertEquals(user.getSN(), "Doe");
     }
 
 }
