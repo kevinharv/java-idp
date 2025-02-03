@@ -15,6 +15,9 @@ public class ADConfig {
 
     @Bean
 	public ActiveDirectoryLdapAuthenticationProvider authenticationProvider() {
-		return new ActiveDirectoryLdapAuthenticationProvider(ADDomain, ADHost);
+		ActiveDirectoryLdapAuthenticationProvider adProvider = new ActiveDirectoryLdapAuthenticationProvider(ADDomain, ADHost);
+		adProvider.setConvertSubErrorCodesToExceptions(true);
+		adProvider.setUseAuthenticationRequestCredentials(true);
+		return adProvider;
 	}
 }
