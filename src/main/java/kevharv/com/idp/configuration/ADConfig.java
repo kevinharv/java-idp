@@ -18,7 +18,6 @@ public class ADConfig {
 		ActiveDirectoryLdapAuthenticationProvider adProvider = new ActiveDirectoryLdapAuthenticationProvider(ADDomain, ADHost);
 		adProvider.setConvertSubErrorCodesToExceptions(true);
 		adProvider.setUseAuthenticationRequestCredentials(true);
-
 		adProvider.setUserDetailsContextMapper(new CustomUserMapper());
 
 		return adProvider;

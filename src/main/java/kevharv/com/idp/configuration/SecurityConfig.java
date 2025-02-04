@@ -37,8 +37,6 @@ public class SecurityConfig {
 				)
 				.authorizeHttpRequests((authorize) -> authorize
 						.anyRequest().authenticated())
-				// Redirect to the login page when not authenticated from the
-				// authorization endpoint
 				.exceptionHandling((exceptions) -> exceptions
 						.defaultAuthenticationEntryPointFor(
 								new LoginUrlAuthenticationEntryPoint("/sso/login"),
@@ -54,9 +52,6 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests((authorize) -> authorize
 						.anyRequest().authenticated())
-				// Form login handles the redirect to the login page from the
-				// authorization server filter chain
-				// .formLogin(Customizer.withDefaults());
 				.formLogin(form -> form
 					.loginPage("/sso/login")
 					.permitAll()
