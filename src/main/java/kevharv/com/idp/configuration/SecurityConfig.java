@@ -41,7 +41,7 @@ public class SecurityConfig {
 				// authorization endpoint
 				.exceptionHandling((exceptions) -> exceptions
 						.defaultAuthenticationEntryPointFor(
-								new LoginUrlAuthenticationEntryPoint("/login"),
+								new LoginUrlAuthenticationEntryPoint("/sso/login"),
 								new MediaTypeRequestMatcher(MediaType.TEXT_HTML)));
 
 		return http.build();
