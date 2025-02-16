@@ -21,6 +21,8 @@
 
 *K8s operator can manage restarts when configuration updated*
 
+*Would it be possible to achieve a configuration update without reloading the application?*
+
 
 ## Development
 ### To-Do

@@ -1,22 +1,121 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-	<head>
-		<title>Please Log In</title>
-	</head>
-	<body>
-		<h1>Please Log In</h1>
-		<div th:if="${param.error}">
-			Invalid username and password.</div>
-		<div th:if="${param.logout}">
-			You have been logged out.</div>
-		<form th:action="@{/sso/login}" method="post">
-			<div>
-			<input type="text" name="username" placeholder="Username"/>
-			</div>
-			<div>
-			<input type="password" name="password" placeholder="Password"/>
-			</div>
-			<input type="submit" value="Log in" />
-		</form>
-	</body>
+<head>
+    <title>Please Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #000;
+            --container-bg: white;
+            --border-color: #ccc;
+            --button-bg: #007bff;
+            --button-hover-bg: #0056b3;
+            --passkey-bg: #28a745;
+            --passkey-hover-bg: #218838;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #fff;
+                --container-bg: #1e1e1e;
+                --border-color: #444;
+                --button-bg: #1a73e8;
+                --button-hover-bg: #1669c1;
+                --passkey-bg: #34d058;
+                --passkey-hover-bg: #2aaf4b;
+            }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .login-container {
+            background: var(--container-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+        }
+        .login-container h1 {
+            margin-bottom: 1rem;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+			width: 100%;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            background: var(--container-bg);
+            color: var(--text-color);
+			box-sizing: border-box;
+        }
+        .login-button, .passkey-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-button {
+            background-color: var(--button-bg);
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .login-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+        .divider {
+            margin: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .passkey-button {
+            background-color: var(--passkey-bg);
+            color: white;
+        }
+        .passkey-button:hover {
+            background-color: var(--passkey-hover-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Please Log In</h1>
+        <div th:if="${param.error}" class="error-message">Invalid username and password.</div>
+        <div th:if="${param.logout}" class="error-message">You have been logged out.</div>
+        <form th:action="@{/sso/login}" method="post">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required />
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required />
+            </div>
+            <button type="submit" class="login-button">Log in</button>
+        </form>
+        <div class="divider"></div>
+        <button class="passkey-button" onclick="loginWithPasskey()">Sign in with Passkey</button>
+    </div>
+    <script>
+        function loginWithPasskey() {
+            alert('Passkey login not implemented yet.');
+        }
+    </script>
+</body>
 </html>
