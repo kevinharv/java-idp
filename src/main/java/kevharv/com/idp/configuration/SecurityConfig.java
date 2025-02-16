@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.InMemoryOAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
@@ -51,11 +52,14 @@ public class SecurityConfig {
 			throws Exception {
 		http
 				.authorizeHttpRequests((authorize) -> authorize
+						.requestMatchers("/userinfo").authenticated()
 						.anyRequest().authenticated())
 				.formLogin(form -> form
-					.loginPage("/sso/login")
-					.permitAll()
-				);
+						.loginPage("/sso/login")
+						.defaultSuccessUrl("/user", false)
+						.permitAll())
+				.logout(logout -> logout.logoutSuccessUrl("/sso/login?logout"))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
 		return http.build();
 	}
@@ -67,7 +71,7 @@ public class SecurityConfig {
 
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
-		return AuthorizationServerSettings.builder().build();
+		return AuthorizationServerSettings.builder().issuer("https://idp-dev.kevharv.com").build();
 	}
 
 	@Bean
