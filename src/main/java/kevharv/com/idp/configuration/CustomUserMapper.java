@@ -22,9 +22,8 @@ public class CustomUserMapper extends LdapUserDetailsMapper {
         String email = ctx.getStringAttribute("mail");
         String department = ctx.getStringAttribute("department");
 
-        Attributes attrs = ctx.getAttributes();
-
-        logger.info(attrs.toString());
+        // Attributes attrs = ctx.getAttributes();
+        // logger.info(attrs.toString());
 
         CustomUser user = new CustomUser(username, authorities, displayName, email, department);
 

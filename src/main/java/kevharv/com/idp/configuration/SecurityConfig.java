@@ -32,6 +32,7 @@ public class SecurityConfig {
 		OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
 
 		http
+				.csrf(csrf -> csrf.disable())
 				.securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
 				.with(authorizationServerConfigurer, (authorizationServer) -> authorizationServer
 						.oidc(Customizer.withDefaults()) // Enable OpenID Connect 1.0
